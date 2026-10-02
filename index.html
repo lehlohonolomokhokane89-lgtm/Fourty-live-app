@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4FORTY LIVE</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">4FORTY LIVE</div>
+      <nav class="nav">
+        <button class="btn" onclick="showPage('feed')">Feed</button>
+        <button class="btn" onclick="showPage('map')">Map</button>
+        <button class="btn" onclick="showPage('chat')">Chat</button>
+        <button class="btn btn-gold" onclick="showPage('verify')">Verify R100</button>
+      </nav>
+    </header>
+
+    <div class="notice-bar">
+      <span>🔥 SPONSORS • 18+ • CLICK TO BET</span>
+      <div class="notice-links">
+        <a href="https://www.betway.co.za" target="_blank" rel="noopener">
+          <button class="btn btn-betway">🎰 BETWAY - BET NOW</button>
+        </a>
+        <a href="https://www.hollywoodbets.net" target="_blank" rel="noopener">
+          <button class="btn btn-hollywood">💜 HOLLYWOODBETS - JOIN</button>
+        </a>
+      </div>
+    </div>
+
+    <div class="card invite-card">
+      <h3>📢 INVITE FRIENDS - GET MORE TAXIS</h3>
+      <div class="invite-row">
+        <button class="btn" onclick="inviteFacebook()">📘 Invite via Facebook</button>
+        <button class="btn btn-green" onclick="inviteWhatsApp()">💬 Invite via WhatsApp</button>
+      </div>
+    </div>
+
+    <main>
+      <section id="loginPage" class="card auth-card">
+        <h2>Log in like Facebook</h2>
+        <input id="fbName" class="input" placeholder="Full Name" />
+        <input id="fbPhone" class="input" placeholder="Phone e.g. 0655846692" />
+        <textarea id="fbBio" class="input" placeholder="Bio - Driver from Ngwathe, 10 years"></textarea>
+        <button class="btn full" onclick="fbLogin()">Create Profile / Login</button>
+      </section>
+
+      <section id="appPage" style="display:none;">
+        <div id="profileCard" class="card profile-card"></div>
+
+        <div id="feedPage">
+          <div class="card">
+            <h3>SA Routes - 20 Routes</h3>
+            <div class="route-toolbar">
+              <input id="routeFilter" class="input" placeholder="Filter routes or town" />
+              <select id="routeSelect" class="input"></select>
+            </div>
+            <button class="btn full" onclick="bookRoute()">BOOK THIS ROUTE - WhatsApp 0796230493</button>
+          </div>
+
+          <div id="taxiList" class="card taxi-list">Loading GOLD taxis...</div>
+        </div>
+
+        <div id="mapPage" style="display:none;">
+          <div class="card">
+            <h3>GPS - Taxi LIVE Map</h3>
+            <div id="map" class="map"></div>
+            <input id="plateInput" class="input" placeholder="Plate e.g. FS 123 GP" />
+            <button class="btn btn-gold full" onclick="goLive()">🚕 DRIVER: GO LIVE GOLD</button>
+          </div>
+        </div>
+
+        <div id="chatPage" style="display:none;">
+          <div class="card">
+            <h3>Group Chats</h3>
+            <select id="groupSelect" class="input">
+              <option>Ngwathe-JHB Group</option>
+              <option>Parys-Sasolburg Group</option>
+              <option>All SA Group</option>
+            </select>
+            <div id="groupChatBox" class="chatbox"></div>
+            <input id="groupMsg" class="input" placeholder="Type group message..." />
+            <button class="btn full" onclick="sendGroup()">Send Group</button>
+          </div>
+
+          <div class="card">
+            <h3>One-on-One Chat</h3>
+            <input id="chatToPhone" class="input" placeholder="Chat to phone e.g. 0796230493" />
+            <div id="oneChatBox" class="chatbox"></div>
+            <input id="oneMsg" class="input" placeholder="Type private message..." />
+            <button class="btn full" onclick="sendOne()">Send Private</button>
+          </div>
+        </div>
+
+        <div id="verifyPage" style="display:none;">
+          <div class="card verify-card">
+            <h3>⭐ R100 Verification Monthly - GOLD Badge</h3>
+            <p>Send R100 Cash Send to: <strong>0655846692</strong> — Reference: Your Plate</p>
+            <input id="verifyPlate" class="input" placeholder="Your Taxi Plate" />
+            <input id="verifyProof" class="input" placeholder="CashSend Reference" />
+            <button class="btn btn-gold full" onclick="requestVerify()">I SENT R100 - REQUEST GOLD BADGE</button>
+            <div id="verifyStatus"></div>
+            <button class="btn btn-green full" onclick="window.open('https://wa.me/27655846692','_blank')">
+              💬 WhatsApp Admin - Check My Payment
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
